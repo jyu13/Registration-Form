@@ -282,7 +282,8 @@ class Example extends React.Component {
                 
         <AvGroup check>          
               <AvInput type="checkbox" name="checkItOut" required/>
-              <a href = 'http://www.sfsu.edu' >I agree to terms.*</a>     
+              <a href = 'http://www.sfsu.edu' >I agree to terms.*</a>  
+              <FormText>Must check before submit</FormText>
               <AvFeedback>Must check before submit.</AvFeedback>
               <p></p>
               
