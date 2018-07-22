@@ -6,16 +6,20 @@
 
 import React from 'react';
 import {Container, Col, Button,  FormGroup, Label, Input, FormText} from 'reactstrap';
-import { AvForm, AvField, AvGroup, AvInput } from 'availity-reactstrap-validation';
+import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import {withRouter} from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 class Example extends React.Component {
     constructor(props) {
     super(props);
-    
+        this.state = {
+            recaptcha: ' '
+        };
         this.updateLast = this.updateLast.bind(this);
         this.updateFirst = this.updateFirst.bind(this);
-        this.updateAddress = this.updateAddress.bind(this);
+        this.updateStreet = this.updateStreet.bind(this);
+        this.updateSuite = this.updateSuite.bind(this);
         this.updateCity = this.updateCity.bind(this);
         this.updateState = this.updateState.bind(this);
         this.updateZip = this.updateZip.bind(this);
@@ -26,6 +30,7 @@ class Example extends React.Component {
         this.updateSubmit = this.updateSubmit.bind(this);
         this.checkCharater = this.checkCharater.bind(this);
         this.checkNumber = this.checkNumber.bind(this);
+        this.onChangeReCaptcha = this.onChangeReCaptcha.bind(this);
         }
         
         updateLast(event){
@@ -34,8 +39,11 @@ class Example extends React.Component {
         updateFirst(event){
             this.props.onChangeFirst(event.target.value);
         }
-        updateAddress(event){
-            this.props.onChangeAddress(event.target.value);
+        updateStreet(event){
+            this.props.onChangeStreet(event.target.value);
+        }
+        updateSuite(event){
+            this.props.onChangeSuite(event.target.value);
         }
         updateCity(event){
             this.props.onChangeCity(event.target.value);
@@ -78,11 +86,17 @@ class Example extends React.Component {
             }
         }
         
+        onChangeReCaptcha(event){
+            this.setState({
+                recaptcha: event
+            });
+        }
+        
         render() {
     return (
             <div>
     <div className ="text-center">
-    <h3>Registration Form</h3>
+    <h1>Registration Form</h1>
     </div>
     <style> {'body {background-color: lightgrey;}'} </style>
             <Container>
@@ -90,41 +104,42 @@ class Example extends React.Component {
       <AvForm onValidSubmit = {this.updateSubmit}>
      
         <AvGroup row>
-          <Label sm={2}>Last Name*</Label>
-          <Col sm={10}>
-            <AvField type="text" name="last" id="exampleLast" placeholder="Ex: Yu" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateLast} required/>
+          <Col ml={6}>
+            <AvField label = "First Name*" type="text" name="first" id="exampleFirst" placeholder="Ex: Arnold" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateFirst} required/>
             <FormText>Please enter characters only.</FormText>
           </Col>
+          <Col sm={6}>
+            <AvField label = "Last Name*" type="text" name="last" id="exampleLast" placeholder="Ex: Yu" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateLast} required/>
+            <FormText>Please enter characters only.</FormText>
+          </Col>
+          
         </AvGroup>
         
-        <AvGroup row>
-          <Label sm={2}>First Name*</Label>
-          <Col sm={10}>
-            <AvField type="text" name="first" id="exampleFirst" placeholder="Ex: Arnold" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateFirst} required/>
-            <FormText>Please enter characters only.</FormText>
-          </Col>
-        </AvGroup>
-     
-     
-        <AvGroup row>
-          <Label sm={2}>Address*</Label>
-          <Col sm={10}>
-            <AvField type="text" name="address" id="exampleAddress" placeholder="Ex: 1600 Hollow Way" maxLength = '40'  onChange = {this.updateAddress} required/>
+        <FormGroup row >
+        <Col sm={8}>
+        <AvGroup>
+          
+            <AvField label = "Street*" type="text" name="street" id="street" placeholder="Ex: 1600 Hollow Way" maxLength = '40'  onChange = {this.updateStreet} required/>
             <FormText>Please enter address.</FormText>
+            </AvGroup>
           </Col>
-        </AvGroup>
+          
+          <Col sm={4}>
+            <AvField label = "Suite" type="text" name="suite" id="suite" placeholder="Ex: Apt 308" maxLength = '10'  onChange = {this.updateSuite} />
+        <FormText>Please enter suite.</FormText>     
+          </Col>
+          </FormGroup>
+
         
         
         <AvGroup row>
-          <Label sm={2}>City*</Label>
-          <Col sm={3}>
-            <AvField type="text" name="city" id="exampleCity" placeholder="Ex: San Francisco" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateCity} required/>
+          <Col sm={5}>
+            <AvField label = "City*" type="text" name="city" id="exampleCity" placeholder="Ex: San Francisco" maxLength = '40' onKeyPress = {(e)=>this.checkCharater(e)} onChange = {this.updateCity} required/>
             <FormText>Please enter city.</FormText>
           </Col>
           
-           <Label sm={1}>State*</Label>
-          <Col sm={2}>
-            <AvField type="select" name="state" id="state"  maxLength = '40'  onChange = {this.updateState} required>
+          <Col sm={4}>
+            <AvField  label = "State*" type="select" name="state" id="state"  maxLength = '40'  onChange = {this.updateState} required>
             <option></option>
             
             <option>Alabama </option>
@@ -180,106 +195,95 @@ class Example extends React.Component {
             </AvField>
             <FormText>Please choose state.</FormText>
           </Col>
-           <Label sm={2}>Zip Code*</Label>
-          <Col sm={2}>
-            <AvField type="text" name="zipcode" id="zipcode" placeholder="Ex: 94132" minLength ='5' maxLength = '5' onKeyPress = {(e)=>this.checkNumber(e)} onChange = {this.updateZip} required/>
+          <Col sm={3}>
+            <AvField label= "Zip Code*"type="text" name="zipcode" id="zipcode" placeholder="Ex: 94132" minLength ='5' maxLength = '5' onKeyPress = {(e)=>this.checkNumber(e)} onChange = {this.updateZip} required/>
             <FormText>Posstive 5 digits.</FormText>
           </Col>
         </AvGroup>
         
         
-        
-        
-        
-        
-        
-        
         <FormGroup row>
-          <Label sm={2}>Education</Label>
-          <Col sm={4}>
-            <Input type="select" name="selectEdu" id="exampleEdu" onChange = {this.updateEdu}>
+          <Col sm={6}>
+            <AvField label = "Education Level" type="select" name="selectEdu" id="exampleEdu" onChange = {this.updateEdu}>
             <option></option>
             <option>High School</option>
             <option>College</option>
             <option>Graduate Studies</option>
             <option>Ph.D</option>
-            </Input>
+            </AvField>
             <FormText>Please choose education level.</FormText>
           </Col>
-          <Label sm={2}>Income Yearly</Label>
-          <Col sm={4}>
-            <Input type="select" name="selectIncome" id="exampleIncome" onChange = {this.updateIncome}>
+          <Col sm={6}>
+            <AvField label ="Income Yearly " type="select" name="selectIncome" id="exampleIncome" onChange = {this.updateIncome}>
             <option></option>
             <option>Less than $50k</option>
             <option>Between $50-100k</option>
             <option>Above $100k</option>
-            </Input>
+            </AvField>
             <FormText>Please choose income.</FormText>
-          </Col>
-        </FormGroup>
+            </Col>
+            </FormGroup>
         
-        
-        <FormGroup row>
-          <Label sm={2}>Email</Label>
-          <Col sm={10}>
-            <AvField type="text" name="email" id="email" placeholder="Ex: arnoldyu@yahoo.com" maxLength = '40'  onChange = {this.updateEmail}/>
-            <FormText>Please enter email.</FormText>
-          </Col>
-        </FormGroup>
-        
-        <AvGroup row>
-          <Label sm={2}>Phone*</Label>
-          <Col sm={10}>
-            <AvField type="text" name="phone" id="phone" placeholder="Ex: 4153381111" minLength = '10' maxLength = '10' onKeyPress = {(e) =>this.checkNumber(e)} onChange = {this.updatePhone} required/>
-            <FormText>Please enter phone number.</FormText>
-          </Col>
-        </AvGroup>
+        <FormGroup row> 
+            <Col sm={6}>
+            <AvGroup>  
+            
+            <AvField label = "Phone Number*" type="text" name="phone" id="phone" placeholder="Ex: 4153381111" minLength = '10' maxLength = '10' onKeyPress = {(e) =>this.checkNumber(e)} onChange = {this.updatePhone} required/>
+            <FormText>Please enter phone number.</FormText>  
+            
+            </AvGroup>
+            </Col>
+          
+          <Col sm={6}>
+            <AvField label = "Email" type="text" name="email" id="email" placeholder="Ex: arnoldyu@yahoo.com" maxLength = '40'  onChange = {this.updateEmail}/>
+            <FormText>Please enter email.</FormText>     
+            </Col>
+          </FormGroup>
+
+       
 
 
         
-        <AvGroup row>
-          <Label sm={2}>Enter PW*</Label>
-          <Col sm={10}>
-            <AvField type="password" name="password" id="password" placeholder ="Minlength 7 and Maxlength 20" minLength = '7' maxLength ='20' required/>
+        <AvGroup row>    
+          <Col >
+            <AvField label = "Enter Password*" type="password" name="password" id="password" placeholder ="Minlength 7 and Maxlength 20" minLength = '7' maxLength ='20' required/>
             <FormText>Please enter password.</FormText>        
           </Col>
         </AvGroup>
         <AvGroup row>
-          <Label sm={2}>Confirm PW*</Label>
-          <Col sm={10}>
-            <AvField type="password" name="repassword" id="repassword" placeholder ="Re-type password" validate={{match:{value:'password'}}} required/>
+          <Col >
+            <AvField label = "Confirm Password*"type="password" name="repassword" id="repassword" placeholder ="Re-type password" validate={{match:{value:'password'}}} required/>
             <FormText>Please re-enter the same password.</FormText>  
           </Col>
         </AvGroup>
         
         
         <FormGroup row>
-          <Label sm={2}></Label>
-          <Col sm={{ size: 10 }}>
-              <Label check>             
+          <Col >   
                 <p>* is required field.</p>
-              </Label>
+                </Col>
+                </FormGroup>
+                
+        <AvGroup>        
+           <Col>     
+                <AvInput type="checkbox" name="checkItOut" required/>
+              <a href = 'http://www.sfsu.edu' >I agree to terms.*</a>     
+              <AvFeedback>Must check before submit.</AvFeedback>
+              
           </Col>
-        </FormGroup>
-        
-        
-        <FormGroup row>
-          <Label sm={2}></Label>
-          <Col sm={{ size: 10 }}>
-            <AvGroup check>
-              <Label check>
-                <AvInput type="checkbox" name= "checkbox" id="checkbox" required/>
-                <Button color = "link" href = '/' >I agree to terms.*</Button>
-                <FormText>Must agree before submit.</FormText>
-              </Label>
-            </AvGroup>
+          </AvGroup>
+        <AvGroup row>  
+          <Col> 
+        <ReCAPTCHA ref ="recaptcha" sitekey = '6Lexk2UUAAAAAB0VjRd4QT8cL_aqBKeCX8x4Cjau' onChange = {this.onChangeReCaptcha}/>
+        <FormText>Must check before submit.</FormText>
           </Col>
-        </FormGroup>
+        </AvGroup>
+
+        
+        <p></p>
+        
         <FormGroup check row>
-          <Col sm={{ size: 10, offset: 2 }}>
-            <Button color = 'primary'>Submit</Button>
-            <p></p>
-          </Col>
+            <Button color = 'primary' size = "lg" >Submit</Button>
         </FormGroup>
       </AvForm>
       </Container>

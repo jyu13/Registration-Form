@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
             lastname: ' ',
             firstname: ' ',
-            address: '',
+            street: '',
+            suite: '',
             city: '',
             state: '',
             zipcode:'',
@@ -24,7 +25,8 @@ class App extends Component {
             };
         this.updateLast = this.updateLast.bind(this);
         this.updateFirst = this.updateFirst.bind(this);
-        this.updateAddress = this.updateAddress.bind(this);
+        this.updateStreet = this.updateStreet.bind(this);
+        this.updateSuite = this.updateSuite.bind(this);
         this.updateCity = this.updateCity.bind(this);
         this.updateState = this.updateState.bind(this);
         this.updateZip = this.updateZip.bind(this);
@@ -41,8 +43,11 @@ class App extends Component {
     updateFirst(firstname){
         this.setState({firstname,search: false});
     }
-    updateAddress(address){
-        this.setState({address, search:false});
+    updateStreet(street){
+        this.setState({street, search:false});
+    }
+    updateSuite(suite){
+        this.setState({suite});
     }
     updateCity(city){
         this.setState({city,search:false});
@@ -78,7 +83,8 @@ class App extends Component {
                 <Route exact path ='/' render={() => <Form 
                 lastname = {this.state.lastname}
                 firstname = {this.state.firstname}
-                address = {this.state.address}
+                street = {this.state.street}
+                suite = {this.state.suite}
                 city = {this.state.city}
                 state = {this.state.state }
                 zipcode = {this.state.zipcode }
@@ -88,7 +94,8 @@ class App extends Component {
                 email = {this.state.email}
                 onChangeLast = {this.updateLast}
                 onChangeFirst = {this.updateFirst}
-                onChangeAddress = {this.updateAddress}
+                onChangeStreet = {this.updateStreet}
+                onChangeSuite = {this.updateSuite}
                 onChangeCity = {this.updateCity}
                 onChangeState = {this.updateState}
                 onChangeZip = {this.updateZip}
@@ -103,7 +110,8 @@ class App extends Component {
                 search = {this.state.search}
                 lastname = {this.state.lastname}
                 firstname = {this.state.firstname}
-                address = {this.state.address}
+                street = {this.state.street}
+                suite = {this.state.suite}
                 city = {this.state.city}
                 state = {this.state.state }
                 zipcode = {this.state.zipcode }

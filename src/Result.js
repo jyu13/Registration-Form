@@ -47,7 +47,7 @@ class result extends React.Component {
             height: '50vh',
             'marginLeft': 'auto',
             'marginRight': 'auto'           
-        }
+        };
 
         return(
                 
@@ -58,7 +58,7 @@ class result extends React.Component {
     <style> {'body {background-color: lightgrey;}'} </style> 
     
     <Container>
-       <Button color = "primary" href = '/' >Back</Button>
+       <Button color = "primary" href = '/' size = 'lg' >Back</Button>
        <p></p>
        
         <div className ="text-center"><h4>Below are information you submitted.</h4></div>
@@ -73,8 +73,13 @@ class result extends React.Component {
        </Row>
        <p></p>
        <Row>
-       <Col sm={3}><h5>Address:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.address} </h5></Col>    
+       <Col sm={3}><h5>Street:</h5></Col>
+       <Col sm= {9}> <h5>{this.props.street} </h5></Col>    
+       </Row>
+       <p></p>
+       <Row>
+       <Col sm={3}><h5>Suite:</h5></Col>
+       <Col sm= {9}> <h5>{this.props.suite} </h5></Col>    
        </Row>
        <p></p>
        <Row>
@@ -121,7 +126,7 @@ class result extends React.Component {
                 
                 
             </div>     
-                )
+                );
     }
 }
 
