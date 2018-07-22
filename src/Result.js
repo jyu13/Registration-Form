@@ -53,15 +53,16 @@ class result extends React.Component {
                 
                 <div>
     <div className ="text-center">
-    <h3>Results Vertification Page by Arnold Jiadong Yu</h3>
+    <h1>Results Vertification Page by Arnold Jiadong Yu</h1>
     </div>
     <style> {'body {background-color: lightgrey;}'} </style> 
     
     <Container>
-       <Button color = "primary" href = '/' size = 'lg' >Back</Button>
+       
        <p></p>
        
-        <div className ="text-center"><h4>Below are information you submitted.</h4></div>
+        <div className ="text-center"><h3>Below are information you submitted.</h3></div>
+        <p></p>
        <Row>
        <Col sm={3}><h5>Last Name:</h5></Col>
        <Col sm= {9}> <h5>{this.props.lastname} </h5></Col>    
@@ -116,11 +117,21 @@ class result extends React.Component {
        <Col sm={3}><h5>Email:</h5></Col>
        <Col sm= {9}> <h5>{this.props.email} </h5></Col>    
        </Row>
+       <p></p>
+       <Row>
+       <Col sm={3}><h5>Password:</h5></Col>
+       <Col sm= {9}> <h5>{this.props.pwd} </h5></Col>    
+       </Row>
              
     <div className = "text-center"><h4>Your address on Map</h4>
     <div id ="map" style ={style}></div>
     <p></p>
     </div>
+    <p></p>
+    <div>
+    <Button color = "primary" href = '/' size = 'lg' block>Back To Registration Form</Button>
+    </div>
+    <p></p>
     </Container>  
          
                 

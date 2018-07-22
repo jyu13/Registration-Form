@@ -20,6 +20,7 @@ class App extends Component {
             income:'',
             phone:'',
             email:'',
+            pwd:'',
             search: false
 
             };
@@ -34,6 +35,7 @@ class App extends Component {
         this.updateIncome = this.updateIncome.bind(this);
         this.updatePhone = this.updatePhone.bind(this);
         this.updateEmail = this.updateEmail.bind(this);
+        this.updatePwd = this.updatePwd.bind(this);
         this.updateSubmit = this.updateSubmit.bind(this);
     
     }
@@ -70,6 +72,9 @@ class App extends Component {
     updateEmail(email){
         this.setState({email});
     }
+    updatePwd(pwd){
+        this.setState({pwd});
+    }
     updateSubmit(){
         this.setState({search: true});
     }
@@ -92,6 +97,7 @@ class App extends Component {
                 income = {this.state.income}
                 phone = {this.state.phone}
                 email = {this.state.email}
+                pwd = {this.state.pwd}
                 onChangeLast = {this.updateLast}
                 onChangeFirst = {this.updateFirst}
                 onChangeStreet = {this.updateStreet}
@@ -103,6 +109,7 @@ class App extends Component {
                 onChangeIncome = {this.updateIncome}
                 onChangePhone = {this.updatePhone}
                 onChangeEmail = {this.updateEmail}
+                onChangePwd = {this.updatePwd}
                 onChangeTermSubmit = {this.updateSubmit}
                 /> } />
                 
@@ -119,6 +126,7 @@ class App extends Component {
                 income = {this.state.income}
                 phone = {this.state.phone}
                 email = {this.state.email}
+                pwd = {this.state.pwd}
                 /> } />
                         
                

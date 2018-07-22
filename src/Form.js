@@ -29,6 +29,7 @@ class Example extends React.Component {
         this.updateIncome = this.updateIncome.bind(this);
         this.updatePhone = this.updatePhone.bind(this);
         this.updateEmail = this.updateEmail.bind(this);
+        this.updatePwd = this.updatePwd.bind(this);
         this.updateSubmit = this.updateSubmit.bind(this);
         this.checkCharater = this.checkCharater.bind(this);
         this.checkNumber = this.checkNumber.bind(this);
@@ -73,7 +74,9 @@ class Example extends React.Component {
         updateEmail(event){
             this.props.onChangeEmail(event.target.value);
         }
-        
+        updatePwd(event){
+            this.props.onChangePwd(event.target.value);
+        }
         /*    if(!this.state.recaptcha ||  this.state.recaptcha.trim().length === 0){
                 alert("Please check ReCAPTCHA");
             }else{
@@ -268,7 +271,7 @@ class Example extends React.Component {
         
         <AvGroup row>    
           <Col >
-            <AvField label = "Enter Password*" type="password" name="password" id="password" placeholder ="Minlength 7 and Maxlength 20" minLength = '7' maxLength ='20' required/>
+            <AvField label = "Enter Password*" type="password" name="password" id="password" placeholder ="Minlength 7 and Maxlength 20" minLength = '7' maxLength ='20' onChange = {this.updatePwd} required/>
             <FormText>Please enter password.</FormText>        
           </Col>
         </AvGroup>
