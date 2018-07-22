@@ -14,7 +14,8 @@ class Example extends React.Component {
     constructor(props) {
     super(props);
         this.state = {
-            recaptcha: ' '
+            recaptcha: ' ',
+            disable : true
         };
         this.updateLast = this.updateLast.bind(this);
         this.updateFirst = this.updateFirst.bind(this);
@@ -66,10 +67,19 @@ class Example extends React.Component {
         updateEmail(event){
             this.props.onChangeEmail(event.target.value);
         }
+        
+        /*    if(!this.state.recaptcha ||  this.state.recaptcha.trim().length === 0){
+                alert("Please check ReCAPTCHA");
+            }else{
+                
+                this.setState({disable: false});
+            }*/
         updateSubmit(event){
             //event.preventDefault();
-            event.persist();
-            //this.props.onChangeTermSubmit();
+            event.persist();          
+            //only works with invisible captcha
+            //window.captcha.execute();
+            //this.props.onChangeTermSubmit();        
             this.props.history.push('/Result');
             
         }
@@ -90,6 +100,12 @@ class Example extends React.Component {
             this.setState({
                 recaptcha: event
             });
+            if(!this.state.recaptcha ||  this.state.recaptcha.trim().length === 0){
+                alert("Please check ReCAPTCHA");
+            }else{
+                
+                this.setState({disable: false});
+            }
         }
         
         render() {
@@ -273,18 +289,18 @@ class Example extends React.Component {
           </AvGroup>
         <AvGroup row>  
           <Col> 
-        <ReCAPTCHA ref ="recaptcha" sitekey = '6Lexk2UUAAAAAB0VjRd4QT8cL_aqBKeCX8x4Cjau' onChange = {this.onChangeReCaptcha}/>
-        <FormText>Must check before submit.</FormText>
+        <ReCAPTCHA ref = 'recaptcha' sitekey = '6Lexk2UUAAAAAB0VjRd4QT8cL_aqBKeCX8x4Cjau' onChange = {this.onChangeReCaptcha}/>
+        <FormText>Must check reCAPTCHA before submit.</FormText>
           </Col>
         </AvGroup>
         
         
-
+                <div></div>
         
         <p></p>
         
         <FormGroup check row>
-            <Button color = 'primary' size = "lg" >Submit</Button>
+            <Button color = 'primary' size = "lg" block disabled = {this.state.disable}>Submit</Button>
         </FormGroup>
       </AvForm>
       </Container>
