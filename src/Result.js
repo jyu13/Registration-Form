@@ -43,7 +43,7 @@ class result extends React.Component {
     render(){
         
         const style = {
-            width: '60vw',
+            width: '30vw',
             height: '50vh',
             'marginLeft': 'auto',
             'marginRight': 'auto'           
