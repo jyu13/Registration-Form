@@ -264,13 +264,12 @@ class Example extends React.Component {
                 </Col>
                 </FormGroup>
                 
-        <AvGroup>        
-           <Col>     
-                <AvInput type="checkbox" name="checkItOut" required/>
+        <AvGroup check>          
+              <AvInput type="checkbox" name="checkItOut" required/>
               <a href = 'http://www.sfsu.edu' >I agree to terms.*</a>     
               <AvFeedback>Must check before submit.</AvFeedback>
+              <p></p>
               
-          </Col>
           </AvGroup>
         <AvGroup row>  
           <Col> 
@@ -278,6 +277,8 @@ class Example extends React.Component {
         <FormText>Must check before submit.</FormText>
           </Col>
         </AvGroup>
+        
+        
 
         
         <p></p>
