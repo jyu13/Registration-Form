@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {Container, Col, Button,  FormGroup, Label, Input, FormText} from 'reactstrap';
+import {Container, Col, Button,  FormGroup, Label, Input, FormText, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import {withRouter} from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -15,7 +15,8 @@ class Example extends React.Component {
     super(props);
         this.state = {
             recaptcha: ' ',
-            disable : true
+            disable : true,
+            modal: false
         };
         this.updateLast = this.updateLast.bind(this);
         this.updateFirst = this.updateFirst.bind(this);
@@ -32,6 +33,11 @@ class Example extends React.Component {
         this.checkCharater = this.checkCharater.bind(this);
         this.checkNumber = this.checkNumber.bind(this);
         this.onChangeReCaptcha = this.onChangeReCaptcha.bind(this);
+        this.toggle = this.toggle.bind(this);
+        }
+
+        toggle() {
+            this.setState({ modal: !this.state.modal});
         }
         
         updateLast(event){
@@ -282,7 +288,17 @@ class Example extends React.Component {
                 
         <AvGroup check>          
               <AvInput type="checkbox" name="checkItOut" required/>
-              <a href = 'http://www.sfsu.edu' >I agree to terms.*</a>  
+              <a style= {{color: 'blue', 'text-decoration': 'underline', cursor: 'pointer'}} onClick = {this.toggle}>I agree to terms.*</a>  
+              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Registration Form Terms of Service</ModalHeader>
+          <ModalBody>Effective Date: July 22, 2018
+          <div>This is for testing only.</div>
+                </ModalBody>
+            
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Ok</Button>{' '}
+          </ModalFooter>
+        </Modal>
               <FormText>Must check before submit</FormText>
               <AvFeedback>Must check before submit.</AvFeedback>
               <p></p>
@@ -302,6 +318,7 @@ class Example extends React.Component {
         
         <FormGroup check row>
             <Button color = 'primary' size = "lg" block disabled = {this.state.disable}>Submit</Button>
+                    <FormText className = "text-center">Submit button will become available after check reCAPTCHA.</FormText>
         </FormGroup>
       </AvForm>
       </Container>

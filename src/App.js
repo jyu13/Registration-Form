@@ -120,6 +120,8 @@ class App extends Component {
                 phone = {this.state.phone}
                 email = {this.state.email}
                 /> } />
+                        
+               
         </Switch>
         </div>   
     );
