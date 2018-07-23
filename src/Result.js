@@ -6,7 +6,8 @@
 
 
 import React from 'react';
-import {Container, Button, Row, Col} from 'reactstrap';
+import {Container, Col, Button,  FormGroup, Label, Input, FormText, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { AvForm, AvField, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
 import {GoogleApiWrapper} from 'google-maps-react';
 
 class result extends React.Component {
@@ -63,65 +64,92 @@ class result extends React.Component {
        
         <div className ="text-center"><h3>Below are information you submitted.</h3></div>
         <p></p>
-       <Row>
-       <Col sm={3}><h5>Last Name:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.lastname} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>First Name:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.firstname} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Street:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.street} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Suite:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.suite} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>City:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.city} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>State:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.state} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Zip Code:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.zipcode} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Education:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.education} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Income Yearly:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.income} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Phone Number:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.phone} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Email:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.email} </h5></Col>    
-       </Row>
-       <p></p>
-       <Row>
-       <Col sm={3}><h5>Password:</h5></Col>
-       <Col sm= {9}> <h5>{this.props.pwd} </h5></Col>    
-       </Row>
+        <AvForm>
+        <AvGroup row>
+          <Col ml={6}>
+            <AvField label = "First Name*" type="text" name="result-first" id="result-first"   value = {this.props.firstname}  disabled/>
+            <FormText>Please enter characters only.</FormText>
+          </Col>
+          <Col sm={6}>
+            <AvField label = "Last Name*" type="text" name="result-last" id="result-last"  value = {this.props.lastname} disabled/>
+            <FormText>Please enter characters only.</FormText>
+          </Col>
+          
+        </AvGroup>
+        
+        <FormGroup row >
+        <Col sm={8}>
+        <AvGroup>
+          
+            <AvField label = "Street*" type="text" name="result-street" id="result-street" value = {this.props.street} disabled />
+            <FormText>Please enter address.</FormText>
+            </AvGroup>
+          </Col>
+          
+          <Col sm={4}>
+            <AvField label = "Suite" type="text" name="result-suite" id="result-suite"  value = {this.props.suite} disabled />
+        <FormText>Please enter suite.</FormText>     
+          </Col>
+          </FormGroup>
+          
+          <AvGroup row>
+          <Col sm={5}>
+            <AvField label = "City*" type="text" name="result-city" id="result-city"value = {this.props.city} disabled/>
+            <FormText>Please enter city.</FormText>
+          </Col>
+          
+          <Col sm={4}>
+            <AvField  label = "State*" type="text" name="result-state" id="result-state"  value = {this.props.state} disabled/>
+            
+            <FormText>Please choose state.</FormText>
+          </Col>
+          <Col sm={3}>
+            <AvField label= "Zip Code*"type="text" name="result-zipcode" id="result-zipcode" value = {this.props.zipcode} disabled/>
+            <FormText>Posstive 5 digits.</FormText>
+          </Col>
+        </AvGroup>
+        
+        
+        <FormGroup row>
+          <Col sm={6}>
+            <AvField label = "Education Level" type="text" name="result-education" id="result-education" value = {this.props.education} disabled />
+            <FormText>Please choose education level.</FormText>
+          </Col>
+          <Col sm={6}>
+            <AvField label ="Income Yearly " type="text" name="result-icome" id="result-income" value = {this.props.income} disabled />
+
+            <FormText>Please choose income.</FormText>
+            </Col>
+            </FormGroup>
+        
+        <FormGroup row> 
+            <Col sm={6}>
+            <AvGroup>  
+            
+            <AvField label = "Phone Number*" type="text" name="result-phone" id="result-phone" value = {this.props.phone} disabled/>
+            <FormText>Please enter phone number.</FormText>  
+            
+            </AvGroup>
+            </Col>
+          
+          <Col sm={6}>
+            <AvField label = "Email" type="text" name="result-email" id="result-email" value = {this.props.email} disabled/>
+            <FormText>Please enter email.</FormText>     
+            </Col>
+          </FormGroup>
+
+       
+
+
+        
+        <AvGroup row>    
+          <Col >
+            <AvField label = "Enter Password*" type="text" name="result-password" id="result-password" value = {this.props.pwd} disabled/>
+            <FormText>Please enter password.</FormText>        
+          </Col>
+        </AvGroup>
+        
+        </AvForm>
              
     <div className = "text-center"><h4>Your address on Map</h4>
     <div id ="map" style ={style}></div>
