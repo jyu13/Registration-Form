@@ -150,7 +150,7 @@ class Example extends React.Component {
           </Col>
           
           <Col sm={4}>
-            <AvField label = "Suite" type="text" name="suite" id="suite" placeholder="Ex: Apt 308" maxLength = '10'  onChange = {this.updateSuite} />
+            <AvField label = "Suite" type="text" name="suite" id="suite" placeholder="Ex: Apt 308" maxLength = '40'  onChange = {this.updateSuite} />
         <FormText>Please enter suite.</FormText>     
           </Col>
           </FormGroup>

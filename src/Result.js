@@ -139,15 +139,6 @@ class result extends React.Component {
           </FormGroup>
 
        
-
-
-        
-        <AvGroup row>    
-          <Col >
-            <AvField label = "Enter Password*" type="text" name="result-password" id="result-password" value = {this.props.pwd} disabled/>
-            <FormText>Please enter password.</FormText>        
-          </Col>
-        </AvGroup>
         
         </AvForm>
              
