@@ -271,7 +271,7 @@ class Example extends React.Component {
         
         <AvGroup row>    
           <Col >
-            <AvField label = "Enter Password*" type="password" name="password" id="password" placeholder ="Minlength 7 and Maxlength 20" minLength = '7' maxLength ='20' onChange = {this.updatePwd} required/>
+            <AvField label = "Enter Password*" type="password" name="password" id="password" placeholder ="Minlength 8 and Maxlength 20" minLength = '8' maxLength ='20' onChange = {this.updatePwd} required/>
             <FormText>Please enter password.</FormText>        
           </Col>
         </AvGroup>
