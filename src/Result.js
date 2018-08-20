@@ -1,7 +1,7 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @author Arnold Jiadong Yu
+ * @name CSC642
+ * @description Second Page of Registration Form, return Input from First Page
  */
 
 
@@ -161,5 +161,5 @@ class result extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyAt7_xQYGAgXHLxk0jS9GcPwD5P2P_i74Q'
+    apiKey: 'Your_Key'
 })(result);

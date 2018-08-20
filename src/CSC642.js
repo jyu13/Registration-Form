@@ -1,7 +1,8 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * @author Arnold Jiadong Yu
+ * @name CSC642
+ * @description Required text of csc642 class
  */
 
 
